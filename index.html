@@ -75,48 +75,60 @@
         }
 
         .header-container {
-            max-width: 1280px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0.8rem 2rem;
+            padding: 0.5rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 2rem;
         }
 
         .logo-img {
-            height: 64px;
+            height: 100px;
             width: auto;
             transition: transform 0.3s ease;
             filter: drop-shadow(0 4px 20px rgba(255, 253, 245, 0.2));
+            flex-shrink: 0;
         }
 
         .logo-img:hover {
             transform: scale(1.08);
         }
 
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
+            font-size: 1rem;
+            transition: all 0.3s;
             position: relative;
+            padding: 0.5rem 0;
+            white-space: nowrap;
         }
 
         nav a:hover {
-            color: var(--text-primary);
+            color: var(--light);
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
@@ -130,6 +142,29 @@
             width: 100%;
         }
 
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            background: var(--glass-strong);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.75rem;
+            cursor: pointer;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.3s;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 253, 245, 0.15);
+        }
+
+        .menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            color: var(--text-primary);
+        }
+
         /* Hero */
         .hero {
             min-height: 100vh;
@@ -137,7 +172,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2rem 4rem;
             position: relative;
         }
 
@@ -697,7 +732,7 @@
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
             .about-grid,
             .website-showcase,
             .feature-grid,
@@ -731,18 +766,51 @@
             }
         }
 
-        @media (max-width: 600px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
-            .header-container {
-                padding: 0.8rem 1rem;
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(46, 0, 8, 0.95);
+                backdrop-filter: blur(40px) saturate(200%);
+                -webkit-backdrop-filter: blur(40px) saturate(200%);
+                border-left: 1px solid var(--glass-border);
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                padding: 6rem 2rem 2rem;
+                z-index: 999;
+            }
+
+            nav.active {
+                right: 0;
             }
 
             nav ul {
-                gap: 1rem;
-                font-size: 0.85rem;
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 0.75rem 0;
+            }
+
+            .header-container {
+                padding: 0.5rem 1rem;
+            }
+
+            .logo-img {
+                height: 70px;
             }
 
             section {
@@ -754,14 +822,49 @@
                 border-radius: 18px;
             }
 
-            .logo-img {
-                height: 52px;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
+
+            .hero {
+                padding: 8rem 1rem 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 60px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .menu-overlay.active {
+            display: block;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="bg-gradient"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Header -->
     <header>
@@ -769,16 +872,24 @@
             <a href="#home">
                 <img src="https://raw.githubusercontent.com/mayskiyrunway/alnceTHEMAYSKIY/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F146_20261121195456.png" alt="THEMAYSKIY" class="logo-img">
             </a>
-            <nav>
+            <nav id="mainNav">
                 <ul>
                     <li><a href="#home">Главная</a></li>
                     <li><a href="#about">О нас</a></li>
                     <li><a href="#history">История</a></li>
                     <li><a href="#website">Сайт</a></li>
                     <li><a href="#instructions">Инструкция</a></li>
+                    <li><a href="#faq">Вопросы</a></li>
                     <li><a href="#official">Официально</a></li>
                 </ul>
             </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </header>
 
@@ -1136,11 +1247,159 @@
         <div class="footer-content">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <img src="https://raw.githubusercontent.com/mayskiyrunway/alnceTHEMAYSKIY/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F146_20261121195456.png" alt="THEMAYSKIY" class="logo-img">
+                    <img src="https://raw.githubusercontent.com/mayskiyrunway/alnceTHEMAYSKIY/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F146_20261121195456.png" alt="THEMAYSKIY" class="logo-img" style="height: 80px;">
                     <p>Майский альянс — объединение авиакомпаний, созданное для поддержки и развития авиации. С 2016 года.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Навигация</h4>
                     <ul>
                         <li><a href="#home">Главная</a></li>
-                        <li><a href="#about">О нас</a
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#history">История</a></li>
+                        <li><a href="#website">Сайт</a></li>
+                        <li><a href="#instructions">Инструкция</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Альянс</h4>
+                    <ul>
+                        <li><a href="https://mayskiyrunway.github.io/alnceTHEMAYSKIY/" target="_blank">Перейти в альянс</a></li>
+                        <li><a href="https://vk.ru/themayskiy" target="_blank">ВКонтакте</a></li>
+                        <li><a href="https://t.me/AliansMY_bot" target="_blank">Telegram Бот</a></li>
+                        <li><a href="#official">Официально</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <strong>© THEMAYskiy <span id="yearRange"></span></strong><br>
+                    Права защищены Майскими авиалиниями
+                </div>
+                <div class="footer-copyright">
+                    <strong>© MAYSKIE AIRLINES 1988-<span id="currentYear"></span></strong>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic years
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const nextYear = currentYear + 1;
+        document.getElementById('yearRange').textContent = `${currentYear}-${nextYear}`;
+        document.getElementById('currentYear').textContent = currentYear;
+
+        // Chart
+        const ctx = document.getElementById('airlinesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Майские авиакомпании — 60%',
+                    'Независимые авиакомпании — 35%',
+                    'Карго — 4%',
+                    'Дочерние авиакомпании — 1%'
+                ],
+                datasets: [{
+                    data: [60, 35, 4, 1],
+                    backgroundColor: [
+                        '#FFFDF5',
+                        'rgba(255, 253, 245, 0.6)',
+                        'rgba(255, 253, 245, 0.35)',
+                        'rgba(255, 253, 245, 0.18)'
+                    ],
+                    borderColor: 'rgba(74, 0, 16, 0.8)',
+                    borderWidth: 2,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'rgba(255, 253, 245, 0.85)',
+                            font: {
+                                size: 12,
+                                family: 'Inter'
+                            },
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Состав альянса · 40+ авиакомпаний',
+                        color: '#FFFDF5',
+                        font: {
+                            size: 15,
+                            weight: '600',
+                            family: 'Inter'
+                        },
+                        padding: { bottom: 25 }
+                    }
+                }
+            }
+        });
+
+        // Scroll reveal
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile menu if open
+                    document.getElementById('mainNav').classList.remove('active');
+                    document.getElementById('menuOverlay').classList.remove('active');
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 50) {
+                header.style.background = 'rgba(46, 0, 8, 0.9)';
+            } else {
+                header.style.background = 'rgba(74, 0, 16, 0.6)';
+            }
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
