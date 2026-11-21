@@ -47,7 +47,6 @@
             position: relative;
         }
 
-        /* Animated background */
         .bg-gradient {
             position: fixed;
             top: 0;
@@ -63,7 +62,6 @@
             pointer-events: none;
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -145,7 +143,6 @@
             width: 100%;
         }
 
-        /* Mobile menu button */
         .menu-toggle {
             display: none;
             background: var(--glass-strong);
@@ -168,7 +165,6 @@
             color: var(--text-primary);
         }
 
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -265,7 +261,6 @@
             transform: translateX(3px);
         }
 
-        /* Social Buttons */
         .social-buttons {
             display: flex;
             gap: 1rem;
@@ -302,7 +297,6 @@
             height: 20px;
         }
 
-        /* Sections */
         section {
             padding: 6rem 2rem;
             max-width: 1280px;
@@ -342,7 +336,6 @@
             font-weight: 300;
         }
 
-        /* Islands / Cards */
         .island {
             background: var(--glass);
             backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
@@ -359,7 +352,6 @@
             transform: translateY(-4px);
         }
 
-        /* About Section */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -402,7 +394,6 @@
             max-width: 400px;
         }
 
-        /* Stats */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -429,7 +420,6 @@
             font-weight: 500;
         }
 
-        /* History */
         .timeline {
             display: flex;
             flex-direction: column;
@@ -458,7 +448,6 @@
             line-height: 1.7;
         }
 
-        /* Website Section */
         .website-showcase {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -525,7 +514,6 @@
             line-height: 1.6;
         }
 
-        /* Instructions Section */
         .instructions-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -599,7 +587,6 @@
             font-style: italic;
         }
 
-        /* FAQ Section */
         .faq-list {
             display: flex;
             flex-direction: column;
@@ -623,7 +610,6 @@
             line-height: 1.7;
         }
 
-        /* Official Stamp */
         .stamp-section {
             text-align: center;
         }
@@ -647,7 +633,216 @@
             font-style: italic;
         }
 
-        /* Footer */
+        /* QR Code Section Styles */
+        .qr-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .qr-code-wrapper {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        .qr-code-wrapper img {
+            display: block;
+            width: 180px;
+            height: 180px;
+        }
+
+        .qr-info {
+            text-align: left;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .qr-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .qr-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .qr-link-box {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            gap: 0.5rem;
+        }
+
+        .qr-link-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--light);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 0.5rem;
+        }
+
+        .copy-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--light);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--cream);
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: #2a8c5a;
+            color: #fff;
+        }
+
+        /* Dynamic Chart Styles from provided code */
+        .dynamic-chart-container {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 24px;
+            padding: 24px 20px 18px;
+            border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .chart-title-dynamic {
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .chart-wrapper-dynamic { 
+            width: 100%; 
+            height: 340px; 
+            position: relative; 
+        }
+
+        .chart-svg { 
+            width: 100%; 
+            height: 100%; 
+            overflow: visible; 
+            display: block; 
+        }
+        
+        .chart-svg text { 
+            font-family: 'Inter', sans-serif; 
+        }
+
+        .chart-grid-line { stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; }
+        .chart-axis-line { stroke: rgba(255, 255, 255, 0.14); stroke-width: 1; }
+        .chart-month-divider { stroke: rgba(255, 255, 255, 0.15); stroke-width: 2; stroke-dasharray: 6 4; }
+        .chart-month-divider.active { stroke: var(--light); stroke-width: 3; stroke-dasharray: none; opacity: 0.8; }
+
+        .chart-y-label { fill: var(--text-muted); font-size: 11px; font-weight: 600; text-anchor: end; dominant-baseline: middle; }
+        .chart-x-label { fill: var(--text-muted); font-size: 11px; font-weight: 600; text-anchor: middle; text-transform: uppercase; letter-spacing: 0.04em; }
+        .chart-x-label.active { fill: var(--light); font-weight: 800; font-size: 12px; }
+
+        /* СТЕКОВЫЕ ЛИНИИ */
+        .chart-series-path { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px currentColor); }
+        .chart-series-path.red { stroke: #ff5b5b; color: #ff5b5b; }
+        .chart-series-path.yellow { stroke: #ffd700; color: #ffd700; }
+        .chart-series-path.blue { stroke: #4da6ff; color: #4da6ff; }
+
+        .chart-series-dot { stroke: var(--bg-deep); stroke-width: 2.5; opacity: 0; animation: dotPop 0.3s ease forwards; }
+        .chart-series-dot.red { fill: #ff5b5b; }
+        .chart-series-dot.yellow { fill: #ffd700; }
+        .chart-series-dot.blue { fill: #4da6ff; }
+
+        .chart-series-val { font-size: 10px; font-weight: 800; text-anchor: middle; opacity: 0; animation: dotPop 0.3s ease forwards; }
+        .chart-series-val.red { fill: #ff5b5b; }
+        .chart-series-val.yellow { fill: #ffd700; }
+        .chart-series-val.blue { fill: #4da6ff; }
+
+        .chart-series-name { font-size: 13px; font-weight: 800; text-anchor: start; dominant-baseline: middle; }
+        .chart-series-name.red { fill: #ff5b5b; }
+        .chart-series-name.yellow { fill: #ffd700; }
+        .chart-series-name.blue { fill: #4da6ff; }
+
+        @keyframes drawPath { to { stroke-dashoffset: 0; } }
+        @keyframes dotPop { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+
+        .chart-legend { display: flex; justify-content: center; gap: 18px; margin-top: 14px; flex-wrap: wrap; }
+
+        .legend-item {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 12px; color: var(--text-muted); font-weight: 600;
+            cursor: pointer; user-select: none; -webkit-user-select: none;
+            padding: 8px 14px; border-radius: 12px;
+            border: 1px solid transparent;
+            transition: opacity 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            touch-action: manipulation;
+        }
+
+        .legend-item:hover { border-color: rgba(255,253,245,.35); background: rgba(255,255,255,.04); }
+        .legend-item.off { opacity: 0.35; }
+        .legend-item.off .legend-dot { box-shadow: none; }
+
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; box-shadow: 0 0 10px currentColor; }
+        .legend-dot.red { background: #ff5b5b; color: #ff5b5b; }
+        .legend-dot.yellow { background: #ffd700; color: #ffd700; }
+        .legend-dot.blue { background: #4da6ff; color: #4da6ff; }
+
+        .banner-container {
+            width: 100%;
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .banner {
+            display: none;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bg-deep);
+            background: linear-gradient(135deg, #f5c896, #e8b37e);
+            padding: 12px 16px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(232,179,126,.35);
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .banner.show { display: block; }
+
         footer {
             background: var(--bg-deep);
             border-top: 1px solid var(--glass-border);
@@ -724,7 +919,6 @@
             font-weight: 600;
         }
 
-        /* Animations */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -736,7 +930,6 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .about-grid,
             .website-showcase,
@@ -834,6 +1027,19 @@
             .hero {
                 padding: 8rem 1rem 3rem;
             }
+
+            .qr-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .qr-info {
+                text-align: center;
+            }
+            
+            .chart-wrapper-dynamic {
+                height: 300px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -846,7 +1052,6 @@
             }
         }
 
-        /* Overlay for mobile menu */
         .menu-overlay {
             display: none;
             position: fixed;
@@ -1238,6 +1443,74 @@
         </div>
     </section>
 
+    <!-- QR Code Section -->
+    <section id="qr" class="qr-section reveal">
+        <div class="section-header">
+            <span class="section-label">Быстрый доступ</span>
+            <h2 class="section-title">Отсканируй и лети</h2>
+            <p class="section-subtitle">
+                Наведи камеру телефона на QR-код, чтобы мгновенно перейти на сайт альянса.
+            </p>
+        </div>
+        
+        <div class="island qr-container">
+            <div class="qr-code-wrapper">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=2E0008&bgcolor=ffffff&data=https%3A%2F%2Fmayskiyrunway.github.io%2FalnceTHEMAYSKIY%2F" alt="QR Code to Alliance Site">
+            </div>
+            <div class="qr-info">
+                <h3>Прямая ссылка на альянс</h3>
+                <p>Скопируйте ссылку или отсканируйте код, чтобы попасть в цифровую экосистему Майского альянса.</p>
+                <div class="qr-link-box">
+                    <input type="text" class="qr-link-input" value="https://mayskiyrunway.github.io/alnceTHEMAYSKIY/" readonly id="siteLink">
+                    <button class="copy-btn" onclick="copyLink()" id="copyBtn">Копировать</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Stats Section (From Provided Code) -->
+    <section id="stats" class="reveal">
+        <div class="section-header">
+            <span class="section-label">Статистика</span>
+            <h2 class="section-title">Динамика Альянса</h2>
+            <p class="section-subtitle">
+                Живые данные из бэкенда Supabase. Отслеживайте вступление, выход и покупки участников в реальном времени.
+            </p>
+        </div>
+
+        <div class="island dynamic-chart-container">
+            <div class="chart-title-dynamic" id="chartTitleDynamic">Динамика Альянса</div>
+            <div class="chart-wrapper-dynamic">
+                <svg class="chart-svg" id="chartSvg" viewBox="0 0 900 340" preserveAspectRatio="xMidYMid meet">
+                    <g id="chartGrid"></g>
+                    <g id="chartPaths"></g>
+                    <g id="chartDots"></g>
+                    <g id="chartNames"></g>
+                </svg>
+            </div>
+            
+            <div class="chart-legend" id="chartLegend">
+                <div class="legend-item" data-color="yellow">
+                    <div class="legend-dot yellow"></div>
+                    <span>Зашло участников</span>
+                </div>
+                <div class="legend-item" data-color="red">
+                    <div class="legend-dot red"></div>
+                    <span>Вышло участников</span>
+                </div>
+                <div class="legend-item" data-color="blue">
+                    <div class="legend-dot blue"></div>
+                    <span>Купило баловск</span>
+                </div>
+            </div>
+
+            <div class="banner-container">
+                <div class="banner" id="monthBanner">🏆 Месяц славы — подведение итогов</div>
+                <div class="banner" id="yearBanner">🎉 Год новостей — подведение итогов</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1286,7 +1559,7 @@
         document.getElementById('yearRange').textContent = `${currentYear}-${nextYear}`;
         document.getElementById('currentYear').textContent = currentYear;
 
-        // Chart
+        // Static Chart (Pie)
         const ctx = document.getElementById('airlinesChart').getContext('2d');
         new Chart(ctx, {
             type: 'doughnut',
@@ -1343,6 +1616,33 @@
             }
         });
 
+        // Copy Link Function
+        function copyLink() {
+            const linkInput = document.getElementById('siteLink');
+            const btn = document.getElementById('copyBtn');
+            
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999);
+            
+            try {
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(linkInput.value);
+                } else {
+                    document.execCommand('copy');
+                }
+                
+                btn.textContent = 'Скопировано!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = 'Копировать';
+                    btn.classList.remove('copied');
+                }, 2000);
+            } catch (err) {
+                console.error('Ошибка копирования', err);
+            }
+        }
+
         // Scroll reveal
         const revealElements = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver((entries) => {
@@ -1395,6 +1695,315 @@
             mainNav.classList.remove('active');
             menuOverlay.classList.remove('active');
         });
+
+        // --- DYNAMIC CHART LOGIC FROM PROVIDED CODE ---
+        const MONTHS_RU = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+        const visible = { yellow: true, red: true, blue: true };
+
+        function getNewsYearStart(now) {
+            const m = now.getMonth();
+            if (m >= 9) return { year: now.getFullYear(), month: 9 };
+            return { year: now.getFullYear(), month: 0 };
+        }
+
+        function buildMonths(now) {
+            const start = getNewsYearStart(now);
+            const months = [];
+            let y = start.year, mo = start.month;
+            while (y < now.getFullYear() || (y === now.getFullYear() && mo <= now.getMonth())) {
+                months.push({ year: y, month: mo });
+                mo++;
+                if (mo > 11) { mo = 0; y++; }
+            }
+            return months;
+        }
+
+        let MONTHS = buildMonths(new Date());
+        let KEY_INDEX = {};
+        function rebuildIndex() {
+            KEY_INDEX = {};
+            MONTHS.forEach((m, i) => { KEY_INDEX[m.year + '-' + m.month] = i; });
+        }
+        rebuildIndex();
+
+        function bucketForDate(iso) {
+            const d = new Date(iso);
+            const key = d.getFullYear() + '-' + d.getMonth();
+            return KEY_INDEX[key] !== undefined ? KEY_INDEX[key] : -1;
+        }
+
+        function renderChart(series) {
+            const NS = 'http://www.w3.org/2000/svg';
+            const grid = document.getElementById('chartGrid');
+            const paths = document.getElementById('chartPaths');
+            const dots = document.getElementById('chartDots');
+            const names = document.getElementById('chartNames');
+
+            grid.innerHTML = '';
+            paths.innerHTML = '';
+            dots.innerHTML = '';
+            names.innerHTML = '';
+
+            const W = 900, H = 340;
+            const padL = 46, padR = 96, padT = 16, padB = 40;
+            const plotW = W - padL - padR;
+            const plotH = H - padT - padB;
+            const n = MONTHS.length;
+
+            // СТЕКОВЫЕ ЗНАЧЕНИЯ
+            const yellowStack = series.yellow.map(v => v);
+            const redStack = series.yellow.map((v, i) => v + series.red[i]);
+            const blueStack = series.yellow.map((v, i) => v + series.red[i] + series.blue[i]);
+
+            const allVals = [].concat(yellowStack, redStack, blueStack);
+            let maxV = Math.max.apply(null, allVals.concat([1]));
+            const step = Math.max(1, Math.ceil(maxV / 5 / 5) * 5);
+            const niceMax = step * 5;
+
+            const xAt = i => n === 1 ? padL + plotW / 2 : padL + (plotW * i) / (n - 1);
+            const yAt = v => padT + plotH - (v / niceMax) * plotH;
+
+            const now = new Date();
+            const currentMonthIdx = n - 1;
+
+            // Сетка + Y
+            for (let g = 0; g <= 5; g++) {
+                const val = step * g;
+                const y = yAt(val);
+                const line = document.createElementNS(NS, 'line');
+                line.setAttribute('x1', padL);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', padL + plotW);
+                line.setAttribute('y2', y);
+                line.setAttribute('class', g === 0 ? 'chart-axis-line' : 'chart-grid-line');
+                grid.appendChild(line);
+
+                const t = document.createElementNS(NS, 'text');
+                t.setAttribute('x', padL - 10);
+                t.setAttribute('y', y);
+                t.setAttribute('class', 'chart-y-label');
+                t.textContent = val;
+                grid.appendChild(t);
+            }
+
+            // Вертикальные разделители месяцев + X подписи
+            const monthWidth = plotW / (n - 1);
+            for (let i = 0; i < n; i++) {
+                const x = xAt(i);
+                
+                if (i > 0) {
+                    const dividerX = x - monthWidth / 2;
+                    const divider = document.createElementNS(NS, 'line');
+                    divider.setAttribute('x1', dividerX);
+                    divider.setAttribute('y1', padT);
+                    divider.setAttribute('x2', dividerX);
+                    divider.setAttribute('y2', padT + plotH);
+                    divider.setAttribute('class', i === currentMonthIdx ? 'chart-month-divider active' : 'chart-month-divider');
+                    grid.appendChild(divider);
+                }
+
+                const t = document.createElementNS(NS, 'text');
+                t.setAttribute('x', x);
+                t.setAttribute('y', padT + plotH + 24);
+                t.setAttribute('class', i === currentMonthIdx ? 'chart-x-label active' : 'chart-x-label');
+                t.textContent = MONTHS_RU[MONTHS[i].month];
+                grid.appendChild(t);
+            }
+
+            const rightDivider = document.createElementNS(NS, 'line');
+            rightDivider.setAttribute('x1', padL + plotW);
+            rightDivider.setAttribute('y1', padT);
+            rightDivider.setAttribute('x2', padL + plotW);
+            rightDivider.setAttribute('y2', padT + plotH);
+            rightDivider.setAttribute('class', 'chart-month-divider');
+            grid.appendChild(rightDivider);
+
+            // Рисуем стековые линии
+            const defs = [
+                { color: 'yellow', stack: yellowStack, raw: series.yellow, name: 'Зашло' },
+                { color: 'red',    stack: redStack,    raw: series.red,    name: 'Вышло' },
+                { color: 'blue',   stack: blueStack,   raw: series.blue,   name: 'Купило' }
+            ];
+
+            defs.forEach((s, sIdx) => {
+                const gPath = document.createElementNS(NS, 'g');
+                gPath.setAttribute('class', 'series-group');
+                gPath.setAttribute('data-color', s.color);
+                if (!visible[s.color]) gPath.style.display = 'none';
+
+                const gDots = document.createElementNS(NS, 'g');
+                gDots.setAttribute('class', 'series-group');
+                gDots.setAttribute('data-color', s.color);
+                if (!visible[s.color]) gDots.style.display = 'none';
+
+                const gName = document.createElementNS(NS, 'g');
+                gName.setAttribute('class', 'series-group');
+                gName.setAttribute('data-color', s.color);
+                if (!visible[s.color]) gName.style.display = 'none';
+
+                if (n > 1) {
+                    let d = '';
+                    s.stack.forEach((v, i) => {
+                        d += (i === 0 ? 'M ' : ' L ') + xAt(i).toFixed(1) + ' ' + yAt(v).toFixed(1);
+                    });
+                    const path = document.createElementNS(NS, 'path');
+                    path.setAttribute('d', d);
+                    path.setAttribute('class', 'chart-series-path ' + s.color);
+                    gPath.appendChild(path);
+
+                    const len = path.getTotalLength();
+                    path.style.strokeDasharray = len;
+                    path.style.strokeDashoffset = len;
+                    path.style.animation = `drawPath 1.4s ease ${sIdx * 0.4}s forwards`;
+                }
+
+                s.stack.forEach((v, i) => {
+                    const cx = xAt(i), cy = yAt(v);
+                    const dot = document.createElementNS(NS, 'circle');
+                    dot.setAttribute('cx', cx);
+                    dot.setAttribute('cy', cy);
+                    dot.setAttribute('r', i === currentMonthIdx ? 7 : 5);
+                    dot.setAttribute('class', 'chart-series-dot ' + s.color);
+                    dot.style.animationDelay = `${sIdx * 0.4 + (i / Math.max(n - 1, 1)) * 1.4}s`;
+                    gDots.appendChild(dot);
+
+                    const val = document.createElementNS(NS, 'text');
+                    val.setAttribute('x', cx);
+                    val.setAttribute('y', cy - 12);
+                    val.setAttribute('class', 'chart-series-val ' + s.color);
+                    val.textContent = s.raw[i];
+                    val.style.animationDelay = `${sIdx * 0.4 + (i / Math.max(n - 1, 1)) * 1.4 + 0.15}s`;
+                    gDots.appendChild(val);
+                });
+
+                const lastY = yAt(s.stack[n - 1]);
+                const name = document.createElementNS(NS, 'text');
+                name.setAttribute('x', padL + plotW + 12);
+                name.setAttribute('y', lastY);
+                name.setAttribute('class', 'chart-series-name ' + s.color);
+                name.textContent = s.name;
+                name.style.opacity = '0';
+                name.style.animation = 'dotPop 0.4s ease forwards';
+                name.style.animationDelay = `${sIdx * 0.4 + 1.5}s`;
+                gName.appendChild(name);
+
+                paths.appendChild(gPath);
+                dots.appendChild(gDots);
+                names.appendChild(gName);
+            });
+
+            document.getElementById('chartTitleDynamic').textContent =
+                'Динамика Альянса — год новостей ' + (MONTHS[0] ? MONTHS[0].year : '');
+
+            // Баннеры
+            const monthBanner = document.getElementById('monthBanner');
+            const yearBanner = document.getElementById('yearBanner');
+            
+            if (now.getDate() === 30) {
+                monthBanner.classList.add('show');
+            } else {
+                monthBanner.classList.remove('show');
+            }
+            
+            if (now.getMonth() === 11 && (now.getDate() === 30 || now.getDate() === 31)) {
+                yearBanner.classList.add('show');
+            } else {
+                yearBanner.classList.remove('show');
+            }
+        }
+
+        document.getElementById('chartLegend').addEventListener('click', (e) => {
+            const item = e.target.closest('.legend-item');
+            if (!item) return;
+            const color = item.getAttribute('data-color');
+            const visibleCount = Object.values(visible).filter(Boolean).length;
+            if (visible[color] && visibleCount === 1) {
+                Object.keys(visible).forEach(k => visible[k] = true);
+            } else {
+                visible[color] = !visible[color];
+            }
+            document.querySelectorAll('.legend-item').forEach(li => {
+                li.classList.toggle('off', !visible[li.getAttribute('data-color')]);
+            });
+            document.querySelectorAll('.series-group').forEach(g => {
+                g.style.display = visible[g.getAttribute('data-color')] ? '' : 'none';
+            });
+        });
+
+        let lastStartKey = '';
+        async function fetchStats() {
+            const now = new Date();
+            const start = getNewsYearStart(now);
+            lastStartKey = start.year + '-' + start.month;
+
+            const empty = () => new Array(MONTHS.length).fill(0);
+            const series = { red: empty(), yellow: empty(), blue: empty() };
+
+            try {
+                if (!window.supabase || !window.supabase.createClient) {
+                    console.log('Supabase не загрузился — график покажет нули');
+                    renderChart(series);
+                    return;
+                }
+
+                const SUPABASE_URL = 'https://qyabbiyhvwiafprolzoh.supabase.co';
+                const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5YWJiaXlodndpYWZwcm9sem9oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzNjk4NTgsImV4cCI6MjEwODk0NTg1OH0.aVjxmmIwdFO3zGjAlizQD3p6J_y-fBCCFTR_nf5m1Kw';
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                const startDate = new Date(start.year, start.month, 1);
+                const isoStart = startDate.toISOString();
+
+                const { data, error } = await supabase
+                    .from('admin_logs')
+                    .select('action, created_at')
+                    .gte('created_at', isoStart)
+                    .limit(5000);
+
+                if (error) {
+                    console.error('Ошибка запроса:', error);
+                    renderChart(series);
+                    return;
+                }
+
+                const JOINED = 'Принятие в альянс';
+                const LEFT = ['Изгнание из альянса', 'Одобрен выход из альянса'];
+                const BOUGHT = 'Начисление';
+
+                (data || []).forEach(row => {
+                    const idx = bucketForDate(row.created_at);
+                    if (idx < 0) return;
+                    const act = (row.action || '').trim();
+                    if (act === JOINED) series.yellow[idx]++;
+                    else if (LEFT.indexOf(act) !== -1) series.red[idx]++;
+                    else if (act === BOUGHT) series.blue[idx]++;
+                });
+
+                renderChart(series);
+
+            } catch (e) {
+                console.error("Ошибка Supabase:", e);
+                renderChart(series);
+            }
+        }
+
+        // Load Supabase SDK dynamically
+        const script = document.createElement('script');
+        script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
+        script.onload = fetchStats;
+        document.head.appendChild(script);
+
+        // Auto-update every 10 seconds
+        setInterval(() => {
+            const now = new Date();
+            const start = getNewsYearStart(now);
+            const key = start.year + '-' + start.month;
+            const newMonths = buildMonths(now);
+            if (key !== lastStartKey || newMonths.length !== MONTHS.length) {
+                MONTHS = newMonths;
+                rebuildIndex();
+            }
+            fetchStats();
+        }, 10000);
     </script>
 </body>
 </html>
