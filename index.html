@@ -17,6 +17,11 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
         :root {
             --bg-primary: #4A0010;
             --bg-deep: #2E0008;
@@ -32,17 +37,14 @@
             --text-muted: rgba(255, 253, 245, 0.55);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            min-height: 100%;
+            position: relative;
         }
 
         /* Animated background */
@@ -57,7 +59,8 @@
                 radial-gradient(ellipse at 80% 100%, rgba(107, 0, 21, 0.4) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(139, 0, 32, 0.2) 0%, transparent 70%),
                 linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 50%, var(--bg-deep) 100%);
-            z-index: -1;
+            z-index: -2;
+            pointer-events: none;
         }
 
         /* Header */
@@ -66,7 +69,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: 100;
             backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
             -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
             background: rgba(74, 0, 16, 0.6);
@@ -304,6 +307,7 @@
             padding: 6rem 2rem;
             max-width: 1280px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-header {
@@ -649,6 +653,7 @@
             border-top: 1px solid var(--glass-border);
             padding: 4rem 2rem 2rem;
             margin-top: 4rem;
+            position: relative;
         }
 
         .footer-content {
@@ -786,7 +791,7 @@
                 border-left: 1px solid var(--glass-border);
                 transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                 padding: 6rem 2rem 2rem;
-                z-index: 999;
+                z-index: 99;
             }
 
             nav.active {
@@ -851,7 +856,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
-            z-index: 998;
+            z-index: 98;
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -1071,7 +1076,6 @@
         </div>
 
         <div class="instructions-grid reveal">
-            <!-- Вход и первые шаги -->
             <div class="island instruction-card">
                 <h3>Вход и первые шаги</h3>
                 <ol class="instruction-list">
@@ -1088,7 +1092,6 @@
                 </div>
             </div>
 
-            <!-- Информация о авиакомпании -->
             <div class="island instruction-card">
                 <h3>Информация об авиакомпании</h3>
                 <ol class="instruction-list" start="7">
@@ -1097,7 +1100,6 @@
                 </ol>
             </div>
 
-            <!-- Мир покупок -->
             <div class="island instruction-card">
                 <h3>Мир покупок</h3>
                 <ol class="instruction-list" start="9">
@@ -1111,7 +1113,6 @@
                 </ol>
             </div>
 
-            <!-- Безопасность -->
             <div class="island instruction-card">
                 <h3>Безопасность</h3>
                 <ol class="instruction-list" start="16">
@@ -1120,7 +1121,6 @@
                 </ol>
             </div>
 
-            <!-- Полет в Майск -->
             <div class="island instruction-card">
                 <h3>Полёт в Майск</h3>
                 <ol class="instruction-list" start="18">
@@ -1128,7 +1128,6 @@
                 </ol>
             </div>
 
-            <!-- Майский мир -->
             <div class="island instruction-card">
                 <h3>Майский мир</h3>
                 <ol class="instruction-list" start="19">
@@ -1137,7 +1136,6 @@
                 </ol>
             </div>
 
-            <!-- Апелляция -->
             <div class="island instruction-card">
                 <h3>Апелляция</h3>
                 <ol class="instruction-list" start="21">
@@ -1145,7 +1143,6 @@
                 </ol>
             </div>
 
-            <!-- Баловск -->
             <div class="island instruction-card">
                 <h3>Баловск</h3>
                 <ol class="instruction-list" start="22">
@@ -1154,7 +1151,6 @@
                 </ol>
             </div>
 
-            <!-- Забыли? -->
             <div class="island instruction-card">
                 <h3>Забыли?</h3>
                 <ol class="instruction-list" start="24">
@@ -1368,7 +1364,6 @@
                 const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Close mobile menu if open
                     document.getElementById('mainNav').classList.remove('active');
                     document.getElementById('menuOverlay').classList.remove('active');
                 }
