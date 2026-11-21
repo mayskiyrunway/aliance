@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THEMAYSKIY — Майский Альянс</title>
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-300-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-500-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #4A0010;
+            --bg-deep: #2E0008;
+            --bg-accent: #6B0015;
+            --burgundy: #8B0020;
+            --light: #FFFDF5;
+            --cream: #FFF8E7;
+            --glass: rgba(255, 253, 245, 0.06);
+            --glass-border: rgba(255, 253, 245, 0.12);
+            --glass-strong: rgba(255, 253, 245, 0.1);
+            --text-primary: #FFFDF5;
+            --text-secondary: rgba(255, 253, 245, 0.75);
+            --text-muted: rgba(255, 253, 245, 0.55);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Animated background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 0%, rgba(139, 0, 32, 0.5) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(107, 0, 21, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 0, 32, 0.2) 0%, transparent 70%),
+                linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 50%, var(--bg-deep) 100%);
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+            background: rgba(74, 0, 16, 0.6);
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-img {
+            height: 64px;
+            width: auto;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 4px 20px rgba(255, 253, 245, 0.2));
+        }
+
+        .logo-img:hover {
+            transform: scale(1.08);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--light);
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--glass-strong);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(30px);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            background: linear-gradient(180deg, #FFFDF5 0%, rgba(255, 253, 245, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--light);
+            color: var(--bg-deep);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(255, 253, 245, 0.15);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(255, 253, 245, 0.25);
+        }
+
+        .cta-button svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Social Buttons */
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.75rem;
+            background: var(--glass-strong);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 253, 245, 0.15);
+            border-color: rgba(255, 253, 245, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Islands / Cards */
+        .island {
+            background: var(--glass);
+            backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .island:hover {
+            background: var(--glass-strong);
+            border-color: rgba(255, 253, 245, 0.2);
+            transform: translateY(-4px);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .about-text-island {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .about-text-island p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .about-text-island p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text-island strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .chart-island {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .chart-wrapper {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .stat-island {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* History */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            padding: 2rem 2.5rem;
+            align-items: center;
+        }
+
+        .timeline-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            padding-right: 2rem;
+            border-right: 2px solid var(--glass-border);
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Website Section */
+        .website-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .website-main {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .website-main h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .website-main p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-island {
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 253, 245, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-island h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-island p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Instructions Section */
+        .instructions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .instruction-card {
+            padding: 2rem;
+        }
+
+        .instruction-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .instruction-card h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--light);
+            border-radius: 2px;
+        }
+
+        .instruction-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .instruction-list li {
+            counter-increment: step-counter;
+            padding: 0.75rem 0 0.75rem 2.5rem;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-left: 1px solid var(--glass-border);
+            margin-left: 0.75rem;
+        }
+
+        .instruction-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -0.75rem;
+            top: 0.75rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--glass-strong);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .instruction-note {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 253, 245, 0.05);
+            border-left: 2px solid var(--light);
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            padding: 1.5rem 2rem;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Official Stamp */
+        .stamp-section {
+            text-align: center;
+        }
+
+        .stamp-island {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 3rem;
+        }
+
+        .stamp-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .stamp-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-deep);
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            max-width: 400px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .footer-copyright strong {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .about-grid,
+            .website-showcase,
+            .feature-grid,
+            .instructions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .timeline-date {
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 2px solid var(--glass-border);
+                padding-bottom: 0.5rem;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                padding: 0.8rem 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .island {
+                padding: 1.5rem;
+                border-radius: 18px;
+            }
+
+            .logo-img {
+                height: 52px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#home">
+                <img src="https://raw.githubusercontent.com/mayskiyrunway/alnceTHEMAYSKIY/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F146_20261121195456.png" alt="THEMAYSKIY" class="logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#history">История</a></li>
+                    <li><a href="#website">Сайт</a></li>
+                    <li><a href="#instructions">Инструкция</a></li>
+                    <li><a href="#official">Официально</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">✦ Официальный сайт альянса</div>
+            <h1>THEMAYSKIY</h1>
+            <p class="hero-subtitle">Майский Альянс</p>
+            <p class="hero-description">
+                Майский альянс очень сильно развивался, и теперь имеет сайт, который никто не имеет в мире! 
+                Аналогов пока что нет (на момент 30 октября — 21 ноября 2026 года).
+            </p>
+            <p class="hero-date">С 16 февраля 2016 года — в игре · С 16 февраля 2025 года — в реальности</p>
+            <a href="https://mayskiyrunway.github.io/alnceTHEMAYSKIY/" class="cta-button" target="_blank">
+                Полетели в альянс!
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+            <div class="social-buttons">
+                <a href="https://vk.ru/themayskiy" class="social-btn" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.08 14.27h-1.7c-.64 0-.84-.52-2-1.72-1.02-1-1.47-1.13-1.72-1.13-.35 0-.45.1-.45.58v1.57c0 .42-.13.67-1.23.67-1.82 0-3.84-1.1-5.27-3.15C3.87 10.5 3.33 8.57 3.33 8.13c0-.25.1-.48.58-.48h1.7c.44 0 .6.2.77.67.84 2.43 2.25 4.55 2.84 4.55.22 0 .32-.1.32-.66V9.88c-.07-1.17-.68-1.27-.68-1.69 0-.2.17-.4.44-.4h2.68c.37 0 .5.2.5.64v3.52c0 .37.17.5.27.5.22 0 .4-.13.8-.53 1.24-1.38 2.12-3.5 2.12-3.5.12-.25.32-.48.76-.48h1.7c.52 0 .63.27.52.64-.22 1-2.3 4.05-2.3 4.05-.18.3-.25.43 0 .76.18.25.77.76 1.17 1.22.73.83 1.28 1.53 1.43 2.02.16.48-.08.73-.56.73z"/>
+                    </svg>
+                    ВКонтакте
+                </a>
+                <a href="https://t.me/AliansMY_bot" class="social-btn" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    Telegram Бот
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-header reveal">
+            <span class="section-label">О нас</span>
+            <h2 class="section-title">Единый альянс.<br>Единое небо.</h2>
+            <p class="section-subtitle">
+                Майский альянс создавался изначально для Майской семьи — Майских авиалиний, Майских авиакомпаний и Майской компании, а также всего, что от Майских Авиалиний.
+            </p>
+        </div>
+
+        <div class="about-grid reveal">
+            <div class="island about-text-island">
+                <p>
+                    Всё изменилось, когда <strong>Ambulence Air</strong> стала первой независимой авиакомпанией, вступившей в альянс. С этого момента Майский альянс стал открыт для всех.
+                </p>
+                <p>
+                    Сегодня в альянсе <strong>более 40 авиакомпаний</strong>, и мы продолжаем расти. Наша миссия — поддержка и помощь начинающим авиакомпаниям, создание единого пространства для развития авиации.
+                </p>
+                <p>
+                    Мы объединяем независимых перевозчиков, карго-компании и дочерние структуры в единую экосистему, где каждый участник находит поддержку и возможности для роста.
+                </p>
+            </div>
+            <div class="island chart-island">
+                <div class="chart-wrapper">
+                    <canvas id="airlinesChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid reveal">
+            <div class="island stat-island">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">Авиакомпаний</div>
+            </div>
+            <div class="island stat-island">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Лет истории</div>
+            </div>
+            <div class="island stat-island">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">Майские авиакомпании</div>
+            </div>
+            <div class="island stat-island">
+                <div class="stat-number">35%</div>
+                <div class="stat-label">Независимые</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History -->
+    <section id="history">
+        <div class="section-header reveal">
+            <span class="section-label">История</span>
+            <h2 class="section-title">Путь длиною в decade</h2>
+            <p class="section-subtitle">
+                От игровой концепции до реального альянса, не имеющего аналогов в мире.
+            </p>
+        </div>
+
+        <div class="timeline reveal">
+            <div class="island timeline-item">
+                <div class="timeline-date">16 февраля 2016</div>
+                <div class="timeline-text">
+                    Рождение Майского альянса в игровой вселенной. Заложены основы объединения, созданного для Майской семьи — Майских авиалиний, авиакомпаний и компании.
+                </div>
+            </div>
+            <div class="island timeline-item">
+                <div class="timeline-date">Эра Ambulence Air</div>
+                <div class="timeline-text">
+                    Переломный момент: Ambulence Air становится первой независимой авиакомпанией в альянсе. С этого дня Майский альянс открывается для всех — не только для Майской семьи.
+                </div>
+            </div>
+            <div class="island timeline-item">
+                <div class="timeline-date">16 февраля 2025</div>
+                <div class="timeline-text">
+                    Реальное начало развития. Переход из игровой концепции в реальное объединение авиакомпаний. Начало активной поддержки начинающих авиакомпаний.
+                </div>
+            </div>
+            <div class="island timeline-item">
+                <div class="timeline-date">2025 — 2026</div>
+                <div class="timeline-text">
+                    Активное развитие: более 40 авиакомпаний в составе. Запуск уникального сайта, не имеющего аналогов в мире (на момент 30 октября — 21 ноября 2026 года).
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Website Section -->
+    <section id="website">
+        <div class="section-header reveal">
+            <span class="section-label">Наш сайт</span>
+            <h2 class="section-title">Сайт, которого нет ни у кого</h2>
+            <p class="section-subtitle">
+                Уникальная цифровая платформа, созданная специально для Майского альянса. Аналогов пока что нет (на момент 30 октября — 21 ноября 2026 года).
+            </p>
+        </div>
+
+        <div class="website-showcase reveal">
+            <div class="island website-main">
+                <h3>Цифровая экосистема альянса</h3>
+                <p>
+                    Наш сайт — это не просто страница в интернете. Это полноценная цифровая платформа, объединяющая все авиакомпании альянса в единое пространство.
+                </p>
+                <a href="https://mayskiyrunway.github.io/alnceTHEMAYSKIY/" class="cta-button" target="_blank">
+                    Открыть сайт альянса
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="feature-grid reveal">
+            <div class="island feature-island">
+                <div class="feature-icon">✦</div>
+                <h4>Уникальный дизайн</h4>
+                <p>Современный минималистичный стиль, разработанный специально для альянса.</p>
+            </div>
+            <div class="island feature-island">
+                <div class="feature-icon">◈</div>
+                <h4>Единая платформа</h4>
+                <p>Все 40+ авиакомпаний альянса представлены в одном цифровом пространстве.</p>
+            </div>
+            <div class="island feature-island">
+                <div class="feature-icon">◉</div>
+                <h4>Официальный статус</h4>
+                <p>Подтверждённый официальным штампом Майского альянса и Майских авиалиний.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section id="instructions">
+        <div class="section-header reveal">
+            <span class="section-label">Руководство</span>
+            <h2 class="section-title">Инструкция по использованию</h2>
+            <p class="section-subtitle">
+                Полное руководство по работе с платформой Майского альянса.
+            </p>
+        </div>
+
+        <div class="instructions-grid reveal">
+            <!-- Вход и первые шаги -->
+            <div class="island instruction-card">
+                <h3>Вход и первые шаги</h3>
+                <ol class="instruction-list">
+                    <li>Перейдите на официальный сайт альянса</li>
+                    <li>Если нет аккаунта для авиакомпании, нажмите на «Регистрация»</li>
+                    <li>При регистрации укажите все официальные информационные данные авиакомпании</li>
+                    <li>Поставьте электронную подпись</li>
+                    <li>Подайте заявку главе альянса</li>
+                    <li>Ожидайте рассмотрения заявки</li>
+                </ol>
+                <div class="instruction-note">
+                    2.1 Если аккаунт уже существует, введите почту и пароль для входа.<br>
+                    *За вход начисляются МайБиты*
+                </div>
+            </div>
+
+            <!-- Информация о авиакомпании -->
+            <div class="island instruction-card">
+                <h3>Информация об авиакомпании</h3>
+                <ol class="instruction-list" start="7">
+                    <li>Зайдите в раздел «Информация о компании» и укажите все данные, относящиеся к вашей авиакомпании</li>
+                    <li>Зайдите в раздел «Мы есть» и укажите свой сайт или канал</li>
+                </ol>
+            </div>
+
+            <!-- Мир покупок -->
+            <div class="island instruction-card">
+                <h3>Мир покупок</h3>
+                <ol class="instruction-list" start="9">
+                    <li>Зайдите в раздел «Баланс» и проверьте количество МайБитов</li>
+                    <li>Зайдите в раздел «Карты авиакомпании» для заказа карт покупки баллов</li>
+                    <li>Зайдите в раздел «Мои карты» для просмотра ваших карт</li>
+                    <li>Зайдите в раздел «МайБанк (кредиты)» для оформления кредита (ознакомьтесь с условиями)</li>
+                    <li>Зайдите в раздел «Перевод МайБит» для перевода МайБитов (частые переводы могут привести к временной заморозке карты)</li>
+                    <li>Зайдите в раздел «МайБанк (расчёт и прибыль)» для автоматического расчёта дохода (информация конфиденциальна)</li>
+                    <li>Зайдите в раздел «Заказы Баловск» для покупки самолётов Баловск</li>
+                </ol>
+            </div>
+
+            <!-- Безопасность -->
+            <div class="island instruction-card">
+                <h3>Безопасность</h3>
+                <ol class="instruction-list" start="16">
+                    <li>Зайдите в раздел «Безопасность (2FA)» для добавления второго фактора аутентификации</li>
+                    <li>Зайдите в раздел «Сменить пароль» при необходимости смены пароля</li>
+                </ol>
+            </div>
+
+            <!-- Полет в Майск -->
+            <div class="island instruction-card">
+                <h3>Полёт в Майск</h3>
+                <ol class="instruction-list" start="18">
+                    <li>Зайдите в раздел «Полёт в Майск» и отправьте заявку</li>
+                </ol>
+            </div>
+
+            <!-- Майский мир -->
+            <div class="island instruction-card">
+                <h3>Майский мир</h3>
+                <ol class="instruction-list" start="19">
+                    <li>Зайдите в раздел «Дочерние компании» для регистрации дочерней компании в альянсе</li>
+                    <li>Зайдите в раздел «Реестр "Майские компании"» для регистрации себя и своей дочерней компании</li>
+                </ol>
+            </div>
+
+            <!-- Апелляция -->
+            <div class="island instruction-card">
+                <h3>Апелляция</h3>
+                <ol class="instruction-list" start="21">
+                    <li>Если ваша карта была заморожена, обратитесь к нам ВКонтакте или в Telegram для решения вопроса</li>
+                </ol>
+            </div>
+
+            <!-- Баловск -->
+            <div class="island instruction-card">
+                <h3>Баловск</h3>
+                <ol class="instruction-list" start="22">
+                    <li>Зайдите в раздел «Заказы Баловск» для покупки самолётов Баловск</li>
+                    <li>Зайдите в раздел «Флот Баловск» для просмотра вашего флота самолётов Баловск</li>
+                </ol>
+            </div>
+
+            <!-- Забыли? -->
+            <div class="island instruction-card">
+                <h3>Забыли?</h3>
+                <ol class="instruction-list" start="24">
+                    <li>Если вы потерялись или забыли что-либо, обратитесь к ИИ-помощнику «МайУм» на сайте</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-header reveal">
+            <span class="section-label">Вопросы и ответы</span>
+            <h2 class="section-title">Зачем?</h2>
+            <p class="section-subtitle">
+                Ответы на часто задаваемые вопросы о Майском альянсе.
+            </p>
+        </div>
+
+        <div class="faq-list reveal">
+            <div class="island faq-item">
+                <div class="faq-question">Зачем регистрироваться в Реестре?</div>
+                <div class="faq-answer">
+                    Это не обязательно, но повышает вероятность того, что с вами будут сотрудничать Майские компании и авиакомпании. Регистрация в Реестре подтверждает ваш официальный статус и повышает доверие.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем нужна двухфакторная аутентификация (2FA)?</div>
+                <div class="faq-answer">
+                    2FA значительно повышает безопасность вашего аккаунта. Даже если пароль будет скомпрометирован, злоумышленник не сможет получить доступ без второго фактора аутентификации.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем нужны МайБиты?</div>
+                <div class="faq-answer">
+                    МайБиты — это внутренняя валюта альянса, которая начисляется за активность, вход в систему и выполнение заданий. Их можно использовать для покупок, переводов между участниками и получения различных привилегий.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем регистрировать дочернюю компанию?</div>
+                <div class="faq-answer">
+                    Регистрация дочерней компании позволяет расширить ваше присутствие в альянсе, получить дополнительные возможности для сотрудничества и официально закрепить структуру вашей авиакомпании.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем нужен ИИ-помощник «МайУм»?</div>
+                <div class="faq-answer">
+                    «МайУм» — это искусственный интеллект, который поможет вам быстро найти нужную информацию, ответить на вопросы о работе платформы и направить вас в нужный раздел. Это ваш персональный помощник 24/7.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем подавать заявку главе альянса?</div>
+                <div class="faq-answer">
+                    Подача заявки главе альянса необходима для подтверждения вашего вступления и проверки предоставленных данных. Это обеспечивает качество участников и поддерживает высокий стандарт альянса.
+                </div>
+            </div>
+
+            <div class="island faq-item">
+                <div class="faq-question">Зачем указывать сайт или канал в разделе «Мы есть»?</div>
+                <div class="faq-answer">
+                    Указание вашего сайта или канала повышает видимость вашей авиакомпании, позволяет другим участникам альянса узнать больше о вас и способствует развитию партнёрских отношений.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Official Stamp -->
+    <section id="official" class="stamp-section">
+        <div class="section-header reveal">
+            <span class="section-label">Официально</span>
+            <h2 class="section-title">Подтверждение официальности</h2>
+            <p class="section-subtitle">
+                Официальный штамп, подтверждающий статус Майского альянса.
+            </p>
+        </div>
+
+        <div class="island stamp-island reveal">
+            <img src="https://raw.githubusercontent.com/balovzena9-ops/mozno-da/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F161_20261108041015.png" alt="Официальный штамп" class="stamp-img">
+            <p class="stamp-note">Официальный штамп Майского альянса</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="https://raw.githubusercontent.com/mayskiyrunway/alnceTHEMAYSKIY/main/%D0%91%D0%B5%D0%B7%20%D0%BD%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F146_20261121195456.png" alt="THEMAYSKIY" class="logo-img">
+                    <p>Майский альянс — объединение авиакомпаний, созданное для поддержки и развития авиации. С 2016 года.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="#home">Главная</a></li>
+                        <li><a href="#about">О нас</a
